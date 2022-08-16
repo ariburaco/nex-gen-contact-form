@@ -13,8 +13,8 @@ const validationSchema = Yup.object().shape({
     .max(100, 'Max 100 characters'),
   tel: Yup.string()
     .matches(phoneRegExp, 'Phone number is not valid') // Regex Pattern match
-    .min(10, 'to short')
-    .max(10, 'to long'),
+    .min(10, 'Please Enter a 10 Digit Phone Number')
+    .max(10, 'Please Enter a 10 Digit Phone Number'),
   password: Yup.string()
     .required('Required Field')
     .max(100, 'Max 100 characters'),

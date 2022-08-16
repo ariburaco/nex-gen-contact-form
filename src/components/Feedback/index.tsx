@@ -15,7 +15,7 @@ const Feedback: FunctionComponent<FeedbackProps> = ({
         </h1>
         <div className="flex flex-col justify-center w-full gap-20 overflow-hidden md:flex-row">
           <div className="flex flex-col gap-6 p-6 rounded-md bg-slate-200">
-            <h2 className="text-xl font-bold">Form Values</h2>
+            <h2 className="text-xl font-bold">Form Values that Sent</h2>
             <pre
               style={{
                 whiteSpace: 'pre-wrap',
@@ -26,7 +26,7 @@ const Feedback: FunctionComponent<FeedbackProps> = ({
             </pre>
           </div>
           <div className="flex flex-col gap-6 p-6 rounded-md bg-slate-200">
-            <h2 className="text-xl font-bold">Response</h2>
+            <h2 className="text-xl font-bold">Response from Server</h2>
             <pre
               style={{
                 whiteSpace: 'pre-wrap',
