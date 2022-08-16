@@ -17,12 +17,15 @@ interface Props {
 
 const ComboBox = React.forwardRef<HTMLSelectElement, Props>((props, ref) => {
   return (
-    <div className="flex flex-row items-center justify-start w-full gap-2 p-2 m-2 ">
-      <span className="font-medium text-zinc-900 ">{props.label}</span>
+    <div className="flex flex-col items-center justify-start w-full gap-2 p-2 m-2 md:flex-row ">
+      <label htmlFor={props.name} className="font-medium text-zinc-900 ">
+        {props.label}
+      </label>
       <select
+        id={props.name}
         ref={ref}
         {...props}
-        className="flex-grow p-2 border rounded-lg bg-slate-300 border-zinc-500"
+        className="flex-grow w-full p-2 border rounded-lg bg-slate-300 border-zinc-500"
       >
         {props.options.map((option: Selectable) => (
           <option key={option.id} value={option.value}>

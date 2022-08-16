@@ -4,7 +4,7 @@ import ComboBox, { Selectable } from 'components/Fields/ComboBox';
 import InputField from 'components/Fields/InputField';
 import RadioButton from 'components/Fields/RadioButton';
 import TextArea from 'components/Fields/TextArea';
-import useNextForms from 'components/hooks/useNexForms';
+import useNextForms from 'hooks/useNexForms';
 import { Toaster } from 'react-hot-toast';
 
 export type Inputs = {
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="container w-11/12 mx-auto my-10 rounded-xl bg-zinc-50">
-      <div className="flex flex-col items-center justify-center gap-10 p-10 shadow-xl">
+      <div className="flex flex-col items-center justify-center gap-10 p-2 shadow-xl md:p-6">
         <Toaster />
         <header className="flex flex-col items-center justify-center w-full h-32 gap-10">
           <img src="logo.png" alt="NexGen Logo" />
@@ -53,7 +53,7 @@ function App() {
         </header>
 
         <div className="w-full h-full">
-          <div className="p-10 bg-slate-200 rounded-xl">
+          <div className="p-4 md:p-10 bg-slate-200 rounded-xl">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col items-start justify-start gap-10 flex-cols"
@@ -116,9 +116,9 @@ function App() {
                 {...register('file')}
               />
 
-              <div className="flex flex-row items-center justify-between w-full">
+              <div className="flex flex-col items-center justify-center w-full gap-10 md:justify-between md:flex-row">
                 <CheckBoxField
-                  label="Do you like this form?"
+                  label="Did you like this form?"
                   error={errors.checkbox}
                   {...register('checkbox')}
                 />
@@ -129,7 +129,7 @@ function App() {
                 />
               </div>
 
-              <div className="flex flex-col items-start justify-start w-full gap-10 p-10 rounded-lg bg-zinc-50">
+              <div className="flex flex-col items-start justify-start w-full gap-4 p-4 rounded-lg md:p-10 bg-zinc-50">
                 <div className="flex flex-row items-center justify-start gap-2">
                   <h1 className="font-medium text-zinc-900 ">
                     Select a number
@@ -164,7 +164,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-start justify-start w-full gap-10 p-10 rounded-lg bg-zinc-50">
+              <div className="flex flex-col items-start justify-start w-full gap-4 p-4 rounded-lg md:p-10 bg-zinc-50">
                 <div className="flex flex-row items-center justify-start gap-2">
                   <h1 className="font-medium text-zinc-900 ">
                     Select options that you like
@@ -188,16 +188,16 @@ function App() {
                 type="submit"
                 value={isSubmitting ? 'Submitting...' : 'Submit'}
                 disabled={isSubmitting}
-                className="px-10 py-3 font-bold transition-all border bg-none border-zinc-900 text-zinc-900 rounded-xl hover:bg-[#eda402] hover:text-white active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed"
+                className="w-full text-md md:text-xl px-10 py-3 font-bold transition-all border bg-none border-zinc-900 text-zinc-900 rounded-xl hover:bg-[#eda402] hover:text-white active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed"
               />
             </form>
             {isSubmitted && result && (
-              <div className="flex flex-col items-center justify-center w-full h-full gap-10 p-10 mt-10 bg-zinc-50 rounded-xl">
-                <h1 className="text-2xl font-bold text-green-900">
+              <div className="flex flex-col items-center justify-center w-full h-full gap-10 p-2 mt-10 md:p-10 bg-zinc-50 rounded-xl">
+                <h1 className="text-2xl font-bold text-center text-green-600">
                   Form submitted successfully
                 </h1>
                 <div className="flex flex-col justify-center w-full gap-20 overflow-hidden md:flex-row">
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-6 p-6 rounded-md bg-slate-200">
                     <h2 className="text-xl font-bold">Form Values</h2>
                     <pre
                       style={{
@@ -208,7 +208,7 @@ function App() {
                       {JSON.stringify(sentData, null, 2)}
                     </pre>
                   </div>
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-6 p-6 rounded-md bg-slate-200">
                     <h2 className="text-xl font-bold">Response</h2>
                     <pre
                       style={{

@@ -11,7 +11,7 @@ interface Props {
 const CheckBoxField = React.forwardRef<HTMLInputElement, Props>(
   (props, ref) => {
     return (
-      <div className="flex flex-row items-center justify-start w-full gap-10">
+      <div className="flex flex-row items-center justify-start w-full gap-4">
         <div className="flex flex-row items-center justify-start gap-2">
           <label htmlFor={props.name} className="font-medium text-zinc-900 ">
             {props.label}
