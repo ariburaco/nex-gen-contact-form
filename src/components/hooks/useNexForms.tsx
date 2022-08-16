@@ -31,7 +31,7 @@ const useNextForms = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     return new Promise((resolve) => {
-      console.log('🚀 ~ file: App.tsx ~ line 21 ~ App ~ data', data);
+      console.log(data);
 
       setTimeout(() => {
         resolve('ok');
