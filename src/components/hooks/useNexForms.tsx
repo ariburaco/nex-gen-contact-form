@@ -1,14 +1,25 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Inputs } from 'App';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import API_URL from 'utils/apiHelper';
 import * as Yup from 'yup';
+import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Required Field'),
-  email: Yup.string().email('Invalid Email Format').required('Required Field'),
-  password: Yup.string().required('Required Field'),
+  name: Yup.string().required('Required Field').max(100, 'Max 100 characters'),
+  email: Yup.string()
+    .email('Invalid Email Format')
+    .required('Required Field')
+    .max(100, 'Max 100 characters'),
+  password: Yup.string()
+    .required('Required Field')
+    .max(100, 'Max 100 characters'),
   number: Yup.number().required('Required Field'),
-  chekbox: Yup.boolean().oneOf([true, false], 'Required Field'),
+  textArea: Yup.string()
+    .required('Required Field')
+    .max(1000, 'Max 1000 characters'),
+  checkbox: Yup.boolean().oneOf([true, false], 'Required Field'),
   color: Yup.string().required('Required Field'),
   date: Yup.string().required('Required Field'),
   localDate: Yup.string().required('Required Field'),
@@ -26,31 +37,47 @@ const useNextForms = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting, isValid, isSubmitted },
   } = useForm<Inputs>({
     mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    return new Promise((resolve) => {
-      console.log(data);
+  const [result, setResult] = useState<any>(null);
+  const [sentData, setSentData] = useState<any>(null);
 
-      setTimeout(() => {
-        resolve('ok');
-      }, 2000);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setSentData(data);
+
+    const toaster = toast.loading('Submitting Form...');
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
     });
+
+    const responseResult = await response.json();
+    setResult(responseResult);
+    if (response.status === 200) {
+      toast.success('Form Submitted Successfully', {
+        id: toaster,
+      });
+    } else {
+      toast.error('Form Submission Failed', {
+        id: toaster,
+      });
+    }
   };
 
   return {
     register,
     handleSubmit,
-    watch,
     errors,
     isSubmitting,
+    isSubmitted,
     onSubmit,
     isValid,
+    result,
+    sentData,
   };
 };
 

@@ -3,13 +3,16 @@ import ColorPicker from 'components/Fields/ColorPicker';
 import ComboBox, { Selectable } from 'components/Fields/ComboBox';
 import InputField from 'components/Fields/InputField';
 import RadioButton from 'components/Fields/RadioButton';
+import TextArea from 'components/Fields/TextArea';
 import useNextForms from 'components/hooks/useNexForms';
+import { Toaster } from 'react-hot-toast';
 
 export type Inputs = {
   name: string;
   email: string;
   password: string;
-  chekbox: boolean;
+  checkbox: boolean;
+  textArea: string;
   color: string;
   date: string;
   localDate: string;
@@ -27,12 +30,21 @@ const initialValues: Selectable[] = [
 ];
 
 function App() {
-  const { register, handleSubmit, errors, isSubmitting, onSubmit } =
-    useNextForms();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    isSubmitting,
+    isSubmitted,
+    onSubmit,
+    result,
+    sentData,
+  } = useNextForms();
 
   return (
     <div className="container w-11/12 mx-auto my-10 rounded-xl bg-zinc-50">
       <div className="flex flex-col items-center justify-center gap-10 p-10 shadow-xl">
+        <Toaster />
         <header className="flex flex-col items-center justify-center w-full h-32 gap-10">
           <img src="logo.png" alt="NexGen Logo" />
           <h1 className="text-2xl font-bold text-zinc-900">
@@ -44,7 +56,7 @@ function App() {
           <div className="p-10 bg-slate-200 rounded-xl">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col items-start justify-start gap-8 flex-cols"
+              className="flex flex-col items-start justify-start gap-10 flex-cols"
             >
               <InputField
                 label="Name"
@@ -76,6 +88,13 @@ function App() {
                 {...register('number')}
               />
 
+              <TextArea
+                label="Your Message"
+                rows={5}
+                error={errors.textArea}
+                {...register('textArea')}
+              />
+
               <InputField
                 label="Date"
                 type="date"
@@ -97,17 +116,18 @@ function App() {
                 {...register('file')}
               />
 
-              <CheckBoxField
-                label="Do you like this form?"
-                error={errors.chekbox}
-                {...register('chekbox')}
-              />
-
-              <ColorPicker
-                label="Pick a color"
-                error={errors.color}
-                {...register('color')}
-              />
+              <div className="flex flex-row items-center justify-between w-full">
+                <CheckBoxField
+                  label="Do you like this form?"
+                  error={errors.checkbox}
+                  {...register('checkbox')}
+                />
+                <ColorPicker
+                  label="Pick a color"
+                  error={errors.color}
+                  {...register('color')}
+                />
+              </div>
 
               <div className="flex flex-col items-start justify-start w-full gap-10 p-10 rounded-lg bg-zinc-50">
                 <div className="flex flex-row items-center justify-start gap-2">
@@ -171,9 +191,37 @@ function App() {
                 className="px-10 py-3 font-bold transition-all border bg-none border-zinc-900 text-zinc-900 rounded-xl hover:bg-[#eda402] hover:text-white active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed"
               />
             </form>
-            {/* <InputField label="Name" name="name" />
-
-            <Button>Submit</Button> */}
+            {isSubmitted && result && (
+              <div className="flex flex-col items-center justify-center w-full h-full gap-10 p-10 mt-10 bg-zinc-50 rounded-xl">
+                <h1 className="text-2xl font-bold text-green-900">
+                  Form submitted successfully
+                </h1>
+                <div className="flex flex-col justify-center w-full gap-20 overflow-hidden md:flex-row">
+                  <div className="flex flex-col gap-6">
+                    <h2 className="text-xl font-bold">Form Values</h2>
+                    <pre
+                      style={{
+                        whiteSpace: 'pre-wrap',
+                        overflowWrap: 'break-word',
+                      }}
+                    >
+                      {JSON.stringify(sentData, null, 2)}
+                    </pre>
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    <h2 className="text-xl font-bold">Response</h2>
+                    <pre
+                      style={{
+                        whiteSpace: 'pre-wrap',
+                        overflowWrap: 'break-word',
+                      }}
+                    >
+                      {JSON.stringify(result, null, 2)}
+                    </pre>{' '}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
