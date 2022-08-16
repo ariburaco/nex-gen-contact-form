@@ -1,4 +1,4 @@
-export interface PropsTypes {
+export interface RadioButtonPropsTypes {
   name: string;
   label: string;
   placeholder?: string;

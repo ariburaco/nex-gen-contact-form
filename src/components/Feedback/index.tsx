@@ -1,12 +1,7 @@
 import { FunctionComponent } from 'react';
+import { FeedbackProps } from './feedback.types';
 
-interface Props {
-  isSubmitted: boolean;
-  result: any;
-  sentData: any;
-}
-
-const Feedback: FunctionComponent<Props> = ({
+const Feedback: FunctionComponent<FeedbackProps> = ({
   isSubmitted,
   result,
   sentData,

@@ -1,7 +1,7 @@
 import { FieldError } from 'react-hook-form';
 import { Selectable } from 'types';
 
-export interface PropsType {
+export interface ComboBoxPropsType {
   name: string;
   label: string;
   error?: FieldError;

@@ -1,6 +1,6 @@
 import Feedback from 'components/Feedback';
-import CheckBoxField from 'components/Fields/CheckBox';
-import ColorPicker from 'components/Fields/ColorPicker';
+// import CheckBoxField from 'components/Fields/CheckBox';
+// import ColorPicker from 'components/Fields/ColorPicker';
 import ComboBox from 'components/Fields/ComboBox';
 import InputField from 'components/Fields/InputField';
 import RadioButton from 'components/Fields/RadioButton';
@@ -8,7 +8,7 @@ import TextArea from 'components/Fields/TextArea';
 import Header from 'components/Header';
 import useNextForms from 'hooks/useNexForms';
 import { Toaster } from 'react-hot-toast';
-import initialValues from 'utils/initialValues';
+import initialValuesForSelectBox from 'utils/initialValues';
 
 function App() {
   const {
@@ -100,14 +100,15 @@ function App() {
               />
 
               <div className="flex flex-col items-center justify-center w-full gap-10 md:justify-between md:flex-row">
-                <CheckBoxField
+                <InputField
                   label="Did you like this form?"
-                  error={errors.checkbox}
+                  type="checkbox"
                   {...register('checkbox')}
                 />
-                <ColorPicker
+
+                <InputField
                   label="Pick a color!"
-                  error={errors.color}
+                  type="color"
                   {...register('color')}
                 />
               </div>
@@ -161,7 +162,7 @@ function App() {
                 <div className="flex flex-col items-center justify-between w-full md:flex-row">
                   <ComboBox
                     label="Options"
-                    options={initialValues}
+                    options={initialValuesForSelectBox}
                     {...register('comboBox')}
                   />
                 </div>

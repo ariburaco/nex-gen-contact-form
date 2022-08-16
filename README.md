@@ -1,6 +1,61 @@
-# Getting Started with Create React App
+# Nex-Gen LLC Front-End Interview Assignment
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Overview
+
+The purpose of this assignment is implementing the commonly used HTML Form elements with the help of ReactJS. The form should be able to validate the input fields and display the error messages and submit the data to the server and display the response.
+
+## Features
+
+Available Form Elements - text - password - email - file - localDate - color - checkbox - number - tel - url - date - datetime-local - select - radio - textarea
+
+For the form validation Yup library is used.
+
+## How to use the App
+
+Fill the form and click on the submit button. The form will validate the input fields and display the error messages if there is any. If the form is valid, it will submit the data to the server and display both the response from the server and the submitted data at the bottom of the page.
+
+## Technology Stack
+
+- ReactJS
+- TypeScript
+- HTML & CSS
+- TailwindCSS
+- React Hook Form & Yup
+- React Hot Toast
+
+## Server API
+
+For the API service, I have deployed a Firebase Cloud Function.
+The API is available at https://us-central1-firebase-email-me.cloudfunctions.net/saveData
+
+It basically accepts the form data as a JSON object and returns the same data as a response with this sample code:
+
+```js
+export const saveData = functions.https.onRequest((request, response) => {
+  corsHandler(request, response, () => {
+    return response.status(200).send(request.body);
+  });
+});
+```
+
+## Linting
+
+For linting, I have used ESLint with the help of the following plugins:
+
+- eslint
+- eslint-config-airbnb
+- eslint-config-airbnb-typescript
+- eslint-config-prettier
+- eslint-config-standard-with-typescript
+- eslint-plugin-import
+- eslint-plugin-prettier
+- eslint-plugin-promise
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+
+## Live Demo [here](https://nex-gen-contact-form.vercel.app/)
 
 ## Available Scripts
 
@@ -18,29 +73,3 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

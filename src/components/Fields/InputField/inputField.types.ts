@@ -1,9 +1,21 @@
 import { FieldError } from 'react-hook-form';
 
-export interface PropsType {
+export interface InputFieldPropsType {
   name: string;
   label: string;
   error?: FieldError;
-  type?: string;
+  type?:
+    | 'text'
+    | 'password'
+    | 'email'
+    | 'file'
+    | 'localDate'
+    | 'color'
+    | 'checkbox'
+    | 'number'
+    | 'tel'
+    | 'url'
+    | 'date'
+    | 'datetime-local';
   placeholder?: string;
 }
