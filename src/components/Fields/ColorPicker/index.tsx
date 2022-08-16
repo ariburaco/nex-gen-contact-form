@@ -5,13 +5,12 @@ interface Props {
   name: string;
   label: string;
   error?: FieldError;
-  type?: string;
   placeholder?: string;
 }
 
-const InputField = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
+const ColorPicker = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
-    <div className="flex flex-col items-start justify-start w-full gap-2 ">
+    <div className="flex flex-row items-center justify-start w-full gap-10">
       <div className="flex flex-row items-center justify-start gap-2">
         <label htmlFor={props.name} className="font-medium text-zinc-900 ">
           {props.label}
@@ -23,16 +22,12 @@ const InputField = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
       <input
         id={props.name}
         ref={ref}
-        type={props.type || 'text'}
-        className={`w-full p-2 border rounded-md border-zinc-500 ${
-          props.error
-            ? 'border-b-4 border-b-red-700'
-            : 'border-b-4 border-b-green-700'
-        }`}
+        type="color"
+        className="border rounded-md border-zinc-500"
         placeholder={props.placeholder}
         {...props}
       />
     </div>
   );
 });
-export default InputField;
+export default ColorPicker;

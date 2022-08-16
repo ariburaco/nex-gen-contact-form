@@ -28,5 +28,6 @@
     "react/jsx-props-no-spreading": ["off"],
     "react/no-unescaped-entities": ["off"],
     "react/require-default-props": "off"
-  }
+  },
+  "ignorePatterns": ["tailwind.config.js", "postcss.config.js"]
 }

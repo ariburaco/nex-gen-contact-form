@@ -1,20 +1,25 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Inputs } from 'App';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
-
-const initialValues: Inputs = {
-  example: 'ex',
-  exampleRequired: '',
-};
-
 const validationSchema = Yup.object().shape({
-  example: Yup.string().email().required('Required'),
-  exampleRequired: Yup.string().required('Required'),
+  name: Yup.string().required('Required Field'),
+  email: Yup.string().email('Invalid Email Format').required('Required Field'),
+  password: Yup.string().required('Required Field'),
+  number: Yup.number().required('Required Field'),
+  chekbox: Yup.boolean().oneOf([true, false], 'Required Field'),
+  color: Yup.string().required('Required Field'),
+  date: Yup.string().required('Required Field'),
+  localDate: Yup.string().required('Required Field'),
+  file: Yup.mixed()
+    .test('fileSize', 'Please Select a File', (value) => {
+      if (!value.length) return false;
+      return true;
+    })
+    .required('Required Field'),
+  radio: Yup.mixed().required('Required Field'),
+  comboBox: Yup.mixed().required('Required Field'),
 });
 
 const useNextForms = () => {
@@ -22,9 +27,8 @@ const useNextForms = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
   } = useForm<Inputs>({
-    defaultValues: initialValues,
     mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
@@ -39,7 +43,15 @@ const useNextForms = () => {
     });
   };
 
-  return { register, handleSubmit, watch, errors, isSubmitting, onSubmit };
+  return {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    isSubmitting,
+    onSubmit,
+    isValid,
+  };
 };
 
 export default useNextForms;
