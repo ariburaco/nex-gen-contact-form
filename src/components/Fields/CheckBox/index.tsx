@@ -1,14 +1,7 @@
 import React from 'react';
-import { FieldError } from 'react-hook-form';
+import { PropsType } from './checkBox.types';
 
-interface Props {
-  name: string;
-  label: string;
-  error?: FieldError;
-  placeholder?: string;
-}
-
-const CheckBoxField = React.forwardRef<HTMLInputElement, Props>(
+const CheckBoxField = React.forwardRef<HTMLInputElement, PropsType>(
   (props, ref) => {
     return (
       <div className="flex flex-row items-center justify-start w-full gap-4">
