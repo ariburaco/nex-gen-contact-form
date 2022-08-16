@@ -43,9 +43,9 @@ function App() {
 
   return (
     <div className="container w-11/12 mx-auto my-10 rounded-xl bg-zinc-50">
+      <Toaster />
       <div className="flex flex-col items-center justify-center gap-10 p-2 shadow-xl md:p-6">
-        <Toaster />
-        <header className="flex flex-col items-center justify-center w-full h-32 gap-10">
+        <header className="flex flex-col items-center justify-center w-full gap-10">
           <img src="logo.png" alt="NexGen Logo" />
           <h1 className="text-2xl font-bold text-zinc-900">
             NexGen Contact Form
