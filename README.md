@@ -8,7 +8,9 @@ The purpose of this assignment is implementing the commonly used HTML Form eleme
 
 ## Features
 
-Available Form Elements - text - password - email - file - localDate - color - checkbox - number - tel - url - date - datetime-local - select - radio - textarea
+Available Form Elements:
+
+- text - password - email - file - localDate - color - checkbox - number - tel - url - date - datetime-local - select - radio - textarea
 
 For the form validation Yup library is used.
 
@@ -55,13 +57,15 @@ For linting, I have used ESLint with the help of the following plugins:
 - eslint-plugin-react
 - eslint-plugin-react-hooks
 
-## Live Demo [here](https://nex-gen-contact-form.vercel.app/)
+## Deployment
+
+For the deployment, I have used Vercel. The live app is available [here](https://nex-gen-contact-form.vercel.app/)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -69,7 +73,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm run test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
+The tests are written using Jest and React Testing Library. \
+Cases covered in the tests are basic rendering, form validation and form submission.
