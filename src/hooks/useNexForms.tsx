@@ -1,11 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import API_URL from 'utils/apiHelper';
-import { toast } from 'react-hot-toast';
 import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Inputs } from 'types';
-import validationSchema from 'utils/validationSchema';
+import API_URL from 'utils/apiHelper';
 import { SUBMIT_ERROR, SUBMIT_SUCCESS } from 'utils/messages';
+import validationSchema from 'utils/validationSchema';
 
 const useNextForms = () => {
   const {
@@ -24,19 +24,26 @@ const useNextForms = () => {
     setSentData(data);
 
     const toaster = toast.loading('Submitting Form...'); // show a loading toaster
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    }); // send the data to the server
 
-    const responseResult = await response.json(); // get the response from the server
-    setResult(responseResult);
-    if (response.status === 200) {
-      // if the response is successful
-      toast.success(SUBMIT_SUCCESS, {
-        id: toaster,
-      });
-    } else {
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }); // send the data to the server
+
+      const responseResult = await response.json(); // get the response from the server
+      setResult(responseResult);
+      if (response.status === 200) {
+        // if the response is successful
+        toast.success(SUBMIT_SUCCESS, {
+          id: toaster,
+        });
+      } else {
+        toast.error(SUBMIT_ERROR, {
+          id: toaster,
+        });
+      }
+    } catch (error) {
       toast.error(SUBMIT_ERROR, {
         id: toaster,
       });

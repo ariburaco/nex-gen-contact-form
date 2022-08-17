@@ -23,9 +23,9 @@ function App() {
   } = useNextForms();
 
   return (
-    <div className="container w-11/12 mx-auto my-10 rounded-xl bg-zinc-50">
+    <div className="container w-11/12 mx-auto my-10 shadow-xl rounded-xl bg-zinc-50">
       <Toaster />
-      <div className="flex flex-col items-center justify-center gap-10 p-2 shadow-xl md:p-6">
+      <div className="flex flex-col items-center justify-center gap-10 p-2 md:p-6">
         <Header />
 
         <div className="w-full h-full">
