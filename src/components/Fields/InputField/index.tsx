@@ -6,7 +6,11 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldPropsType>(
     const { name, label, error, type, placeholder } = props;
 
     return (
-      <div className="flex flex-col items-start justify-start w-full gap-2">
+      <div
+        className="flex flex-col items-start justify-start w-full gap-2"
+        role="form"
+        aria-describedby={name}
+      >
         <div className="flex flex-row items-center justify-start gap-2">
           <label htmlFor={name} className="font-medium text-zinc-900 ">
             {label}
